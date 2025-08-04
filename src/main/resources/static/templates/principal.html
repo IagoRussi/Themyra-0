@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="m-0 p-0 box-border">
+    <section class="flex max-w-full h-screen flex bg-[radial-gradient(circle,_#2d2d2d,_#000000)]">
+        <aside id="sidebar"
+            class="flex flex-col w-[12%] hidden sm:flex sm:w-[4%] sidebar justify-center items-center p-4 border-2 rounded-2xl  border-none shadow-lg m-1">
+            <ul class="menu rounded-box">
+                <li>
+                    <a>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <main id="header e content" class="content grow flex flex-col justify-between border-none">
+            <div class="navbar shadow-sm h-[8%] sm:h-[3%]">
+                <div class="flex-1">
+                    <a class="btn btn-ghost text-xl">Themyra</a>
+                </div>
+                <div class="flex gap-2">
+
+                    <div class="dropdown dropdown-end">
+                        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                            <div class="w-10 rounded-full">
+                                <img alt="Tailwind CSS Navbar component" src="../css/img/perfilPng.png" />
+                            </div>
+                        </div>
+                        <ul tabindex="0" class="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow-sm">
+                            <li>
+                                <a class="justify-between">
+                                    Perfil
+                                </a>
+                            </li>
+                            <li><a>Configurações</a></li>
+                            <li><a>Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex w-[50%] flex-col justify-center items-center place-self-center h-[50%]">
+                <div class="flex flex-col justify-center items-center w-full text-white">
+                    <img class="mb-4 w-20" src="../css/img/logo.png" alt="logo">
+                    <p
+                        class="bg-gradient-to-r text-sm sm:text-ls from-slate-50 to-slate-200 bg-clip-text text-transparent">
+                        Bem vindo a
+                        Themyra</p>
+                    <h1
+                        class="text-lg sm:text-3xl sm:break-all bg-gradient-to-r from-slate-50 to-slate-200 bg-clip-text text-transparent">
+                        Como podemos ajudar?</h1>
+                </div>
+                <div
+                    class="flex w-full flex-row justify-center gap-2 items-end h-[30%] text-white mt-9 flex-wrap sm:justify-center md:h-[40%]">
+                    <div style="background-image: url('../css/img/card_1.webp'); background-size: cover; "
+                        class="btn flex justify-center items-center w-full sm:w-[30%] sm:h-full h-[50%] rounded-md  p-2  bg-zinc-950 border-base-300 bg-black">
+                        <h1>Verificar URL</h1>
+                    </div>
+                    <div style="background-image: url('../css/img/card_2.webp'); background-size: cover; "
+                        class="btn flex justify-center items-center w-full sm:w-[30%] sm:h-full h-[50%] rounded-md  p-2  bg-zinc-950 border-base-300 bg-black">
+                        <h1>Verificar Texto</h1>
+                    </div>
+                    <div style="background-image: url('../css/img/card_3.webp'); background-size: cover; "
+                        class="btn flex justify-center items-center w-full sm:w-[30%] sm:h-full h-[50%] rounded-md  p-2  bg-zinc-950 border-base-300 bg-black">
+                        <h1>Veirificar Imagens</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex w-[50%] h-[30%] flex-col justify-end place-self-center items-center text-white">
+                <div class="flex flex-col justify-center items-center justify-center w-[100%] gap-2 mb-20 sm:mb-20">
+                    <label class="input w-[100%] sm:w-[60%] rounded-2xl bg-zinc-950">
+                        <span class="label">https://</span>
+                        <input type="text" placeholder="URL" />
+                    </label>
+
+                    <button class="btn btn-soft w-[100%] rounded-2xl sm:w-[60%] bg-zinc-950">Enviar</button>
+
+                </div>
+
+            </div>
+
+
+
+        </main>
+    </section>
+
+</body>
+
+</html>

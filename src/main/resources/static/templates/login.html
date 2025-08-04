@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="../css/output.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="m-0 p-0 box-border">
+  <section class="flex bg-[radial-gradient(circle,_#2d2d2d,_#000000)] h-screen justify-center items-center">
+    <div class="flex h-3/4 w-2/3">
+      <div
+        class="flex w-full bg-black md:w-2/6 justify-center items-center flex-col rounded-r-2xl rounded-l-2xl sm:rounded-r-none bg-[radial-gradient(circle,_#2d2d2d,_#000000)] shadow-xl">
+        <h1 class="text-4xl 2xl:text-4xl text-white mb-4">Login</h1>
+
+        <!-- FORMULÁRIO -->
+        <form method="post" action="/login" class="rounded-box w-2/3 sm:w-3/4 p-4">
+          <label class="label text-white" for="username">Email</label>
+          <input id="username" name="username" type="text" class="input border-none w-full" placeholder="Email" required />
+
+          <label class="label text-white" for="password">Senha</label>
+          <input id="password" name="password" type="password" class="input border-none w-full" placeholder="Senha" required />
+
+          <span class="ml-2">
+            <a class="underline text-white text-sm" href="#">Esqueceu a senha?</a>
+          </span>
+
+          <button type="submit" class="btn btn-neutral mt-4 w-full">Entrar</button>
+
+          <span class="ml-2 text-white text-sm">Não tem uma conta? <a class="underline" href="#">Cadastrar</a></span>
+        </form>
+
+        <!-- OU -->
+        <h1 class="mb-4 mt-2 text-white">OU</h1>
+
+        <!-- Botões Sociais -->
+        <button class="btn w-1/2 text-xs bg-white text-black border-[#e5e5e5]">
+          <!-- SVG Google -->
+          <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <g>
+              <path d="m0 0H512V512H0" fill="#fff"></path>
+              <path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path>
+              <path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path>
+              <path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path>
+              <path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path>
+            </g>
+          </svg>
+          <span>Login com Google</span>
+        </button>
+
+        <button class="btn mt-2 w-1/2 bg-[#1A77F2] md:text-xs text-white border-[#005fd8]">
+          <!-- SVG Facebook -->
+          <svg aria-label="Facebook logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+            <path fill="white" d="M8 12h5V8c0-6 4-7 11-6v5c-4 0-5 0-5 3v2h5l-1 6h-4v12h-6V18H8z"></path>
+          </svg>
+          Login com Facebook
+        </button>
+      </div>
+
+      <!-- LADO DA IMAGEM -->
+      <div class="flex grow sm:rounded-r-2xl" style="background-image: url(../css/img/backLogin.webp); background-size: cover;">
+      </div>
+    </div>
+  </section>
+
+  <script>
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('error')) {
+    const errorDiv = document.createElement('div');
+    errorDiv.style.color = 'red';
+    errorDiv.textContent = 'Usuário ou senha inválidos.';
+    document.body.prepend(errorDiv);
+  }
+</script>
+</body>
+
+</html>
