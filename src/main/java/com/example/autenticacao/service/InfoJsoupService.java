@@ -4,22 +4,52 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Service;
 
+@Service
 public class InfoJsoupService {
-     public String extrairData(Document doc) {
+
+    public Map<String, String> analisar(String url) throws Exception {
+        Document doc = Jsoup.connect(url)
+                .userAgent("Mozilla/5.0")
+                .timeout(10000)
+                .get();
+
+        String fonte = extrairFonte(doc);
+        String data = extrairData(doc);
+        String autor = extrairAutorOuResponsavel(doc);
+        String titulo = extrairTitulos(doc);
+        Element primeiroH1 = doc.selectFirst("h1");
+        String tipoTitulo = primeiroH1 != null ? tipoDeTexto(primeiroH1) : "Sem título H1";
+
+        Map<String, String> resposta = new HashMap<>();
+        resposta.put("fonte", fonte);
+        resposta.put("data", data);
+        resposta.put("autor", autor);
+        resposta.put("titulo", titulo);
+        resposta.put("tipoTitulo", tipoTitulo);
+
+        return resposta;
+    }
+
+
+    private String extrairData(Document doc) {
         String[] seletoresPossiveis = {
-                "meta[name=date]",
-                "meta[name=pubdate]",
-                "meta[property=article:published_time]",
-                "meta[itemprop=datePublished]",
-                "time[datetime]",
-                "span[class*=date]",
-                "p[class*=data]",
-                "div[class*=date]"
+            "meta[name=date]",
+            "meta[name=pubdate]",
+            "meta[property=article:published_time]",
+            "meta[itemprop=datePublished]",
+            "time[datetime]",
+            "span[class*=date]",
+            "p[class*=data]",
+            "div[class*=date]"
         };
 
         for (String seletor : seletoresPossiveis) {
@@ -39,25 +69,25 @@ public class InfoJsoupService {
                     String dataFormatada = tentarFormatarData(data);
                     if (dataFormatada != null) {
                         return dataFormatada;
-                    } else
+                    } else {
                         return data;
+                    }
                 }
             }
         }
-
         return "";
     }
 
     private String tentarFormatarData(String data) {
         String[] formatos = {
-                "yyyy-MM-dd'T'HH:mm:ss.SSSX",
-                "yyyy-MM-dd'T'HH:mm:ss.SSSXXX",
-                "yyyy-MM-dd'T'HH:mm:ssX",
-                "yyyy-MM-dd'T'HH:mm:ssXXX",
-                "yyyy-MM-dd'T'HH:mm:ss",
-                "yyyy-MM-dd",
-                "dd/MM/yyyy",
-                "dd-MM-yyyy"
+            "yyyy-MM-dd'T'HH:mm:ss.SSSX",
+            "yyyy-MM-dd'T'HH:mm:ss.SSSXXX",
+            "yyyy-MM-dd'T'HH:mm:ssX",
+            "yyyy-MM-dd'T'HH:mm:ssXXX",
+            "yyyy-MM-dd'T'HH:mm:ss",
+            "yyyy-MM-dd",
+            "dd/MM/yyyy",
+            "dd-MM-yyyy"
         };
 
         for (String formato : formatos) {
@@ -79,30 +109,27 @@ public class InfoJsoupService {
         }
         return null;
     }
-/*<-----------Fonte----------->*/
-   public String extrairFonte(Document doc) {
+
+    private String extrairFonte(Document doc) {
         return doc.select("meta[name=author], meta[property=og:site_name]").attr("content");
     }
 
-/*<-----------Titulo----------->*/
- public String extrairAutorOuResponsavel(Document doc) {
+    private String extrairAutorOuResponsavel(Document doc) {
         return doc.select("meta[name=author], meta[property=og:site_name]").attr("content");
     }
 
-    public String extrairTitulos(Document doc) {
+    private String extrairTitulos(Document doc) {
         Elements titulos = doc.select("h1");
         StringBuilder sb = new StringBuilder();
 
         for (Element titulo : titulos) {
             sb.append(titulo.text()).append("\n");
         }
-
-        return sb.toString();
+        return sb.toString().trim();
     }
 
-    public String tipoDeTexto(Element titulos) {
-        String texto = titulos.text();
-
+    private String tipoDeTexto(Element titulo) {
+        String texto = titulo.text();
         if (texto.equals(texto.toUpperCase())) {
             return "O título está todo em MAIÚSCULAS.";
         } else if (texto.equals(texto.toLowerCase())) {
@@ -110,8 +137,5 @@ public class InfoJsoupService {
         } else {
             return "O título está misturado.";
         }
-
     }
-
-    
 }
